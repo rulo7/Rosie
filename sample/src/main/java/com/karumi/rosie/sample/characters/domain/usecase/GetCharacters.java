@@ -25,13 +25,14 @@ import com.karumi.rosie.sample.characters.domain.model.Character;
 import com.karumi.rosie.sample.characters.repository.CharactersRepository;
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class GetCharacters extends RosieUseCase {
 
   private final CharactersRepository charactersRepository;
 
-  @Inject public GetCharacters(CharactersRepository charactersRepository) {
+  @Inject1
+  public GetCharacters(CharactersRepository charactersRepository) {
     this.charactersRepository = charactersRepository;
   }
 

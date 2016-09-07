@@ -24,7 +24,7 @@ import com.karumi.rosie.repository.datasource.paginated.Page;
 import com.karumi.rosie.sample.characters.domain.model.Character;
 import java.util.Collection;
 import java.util.LinkedList;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class CharactersFakeDataSource extends EmptyPaginatedReadableDataSource<String, Character> {
 
@@ -40,7 +40,8 @@ public class CharactersFakeDataSource extends EmptyPaginatedReadableDataSource<S
 
   private Character[] characters;
 
-  @Inject public CharactersFakeDataSource() {
+  @Inject1
+  public CharactersFakeDataSource() {
     initCharacters();
   }
 

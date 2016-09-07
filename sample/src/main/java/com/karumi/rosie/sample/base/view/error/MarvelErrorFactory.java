@@ -20,11 +20,12 @@ import com.karumi.marvelapiclient.MarvelApiException;
 import com.karumi.rosie.domain.usecase.error.ErrorFactory;
 import java.lang.reflect.InvocationTargetException;
 import java.net.UnknownHostException;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class MarvelErrorFactory extends ErrorFactory {
 
-  @Inject public MarvelErrorFactory() {
+  @Inject1
+  public MarvelErrorFactory() {
   }
 
   @Override public Error create(Exception exception) {

@@ -19,10 +19,10 @@ package com.karumi.rosie.sample;
 import android.content.Context;
 import com.karumi.rosie.daggerutils.ForActivity;
 import com.karumi.rosie.sample.main.MainModule;
-import dagger.Module;
-import dagger.Provides;
+import dagger.Module1;
+import dagger.Provides1;
 
-@Module(overrides = true, complete = false, library = true, includes = {
+@Module1(overrides = true, complete = false, library = true, includes = {
     MainModule.class
 }) public class BaseTestModule {
 
@@ -32,7 +32,9 @@ import dagger.Provides;
     this.context = context;
   }
 
-  @Provides @ForActivity Context provideActivityContext() {
+  @Provides1
+  @ForActivity
+  Context provideActivityContext() {
     return context;
   }
 }

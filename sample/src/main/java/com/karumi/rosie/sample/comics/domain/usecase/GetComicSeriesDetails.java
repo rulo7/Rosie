@@ -20,13 +20,14 @@ import com.karumi.rosie.domain.usecase.RosieUseCase;
 import com.karumi.rosie.domain.usecase.annotation.UseCase;
 import com.karumi.rosie.sample.comics.domain.model.ComicSeries;
 import com.karumi.rosie.sample.comics.repository.ComicSeriesRepository;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class GetComicSeriesDetails extends RosieUseCase {
 
   private final ComicSeriesRepository repository;
 
-  @Inject public GetComicSeriesDetails(ComicSeriesRepository repository) {
+  @Inject1
+  public GetComicSeriesDetails(ComicSeriesRepository repository) {
     this.repository = repository;
   }
 

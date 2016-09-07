@@ -25,13 +25,14 @@ import com.karumi.rosie.sample.comics.domain.model.ComicSeries;
 import com.karumi.rosie.sample.comics.repository.ComicSeriesRepository;
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class GetComicSeriesPage extends RosieUseCase {
 
   private final ComicSeriesRepository repository;
 
-  @Inject public GetComicSeriesPage(ComicSeriesRepository repository) {
+  @Inject1
+  public GetComicSeriesPage(ComicSeriesRepository repository) {
     this.repository = repository;
   }
 

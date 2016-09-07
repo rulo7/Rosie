@@ -33,16 +33,17 @@ import com.karumi.rosie.sample.main.view.presenter.FakeDataPresenter;
 import com.karumi.rosie.view.Presenter;
 import java.util.Arrays;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class MainActivity extends MarvelActivity implements FakeDataPresenter.View {
 
   @Bind(R.id.vp_main) ViewPager viewPager;
   @Bind(R.id.tab_page_indicator) TabLayout pagerTabView;
   @Bind(R.id.tv_disclaimer) TextView disclaimerView;
-
+  @Inject1
+  @Presenter
+  FakeDataPresenter fakeDataPresenter;
   private FragmentAdapter adapter;
-  @Inject @Presenter FakeDataPresenter fakeDataPresenter;
 
   @Override protected int getLayoutId() {
     return R.layout.activity_main;

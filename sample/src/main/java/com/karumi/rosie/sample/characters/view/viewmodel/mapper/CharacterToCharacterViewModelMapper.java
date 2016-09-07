@@ -21,11 +21,12 @@ import com.karumi.rosie.sample.characters.domain.model.Character;
 import com.karumi.rosie.sample.characters.view.viewmodel.CharacterViewModel;
 import java.util.LinkedList;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class CharacterToCharacterViewModelMapper {
 
-  @Inject public CharacterToCharacterViewModelMapper() {
+  @Inject1
+  public CharacterToCharacterViewModelMapper() {
   }
 
   public List<CharacterViewModel> mapCharactersToCharacterViewModels(

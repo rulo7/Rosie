@@ -22,13 +22,14 @@ import com.karumi.rosie.sample.comics.domain.model.Comic;
 import com.karumi.rosie.sample.comics.domain.model.ComicSeries;
 import com.karumi.rosie.sample.comics.repository.datasource.ComicSeriesDataSource;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class ComicSeriesRepository extends PaginatedRosieRepository<Integer, ComicSeries> {
 
   private final ComicSeriesDataSource apiDataSource;
 
-  @Inject public ComicSeriesRepository(ComicSeriesDataSourceFactory comicSeriesDataSourceFactory,
+  @Inject1
+  public ComicSeriesRepository(ComicSeriesDataSourceFactory comicSeriesDataSourceFactory,
       PaginatedCacheDataSource<Integer, ComicSeries> inMemoryPaginatedCache) {
 
     this.apiDataSource = comicSeriesDataSourceFactory.createDataSource();

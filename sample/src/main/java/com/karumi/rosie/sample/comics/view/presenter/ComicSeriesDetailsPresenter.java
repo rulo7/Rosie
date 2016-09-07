@@ -25,7 +25,7 @@ import com.karumi.rosie.sample.comics.domain.model.ComicSeries;
 import com.karumi.rosie.sample.comics.domain.usecase.GetComicSeriesDetails;
 import com.karumi.rosie.sample.comics.view.viewmodel.ComicSeriesDetailsViewModel;
 import com.karumi.rosie.sample.comics.view.viewmodel.mapper.ComicSeriesToComicSeriesDetailsViewModelMapper;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class ComicSeriesDetailsPresenter
     extends MarvelPresenter<ComicSeriesDetailsPresenter.View> {
@@ -34,7 +34,8 @@ public class ComicSeriesDetailsPresenter
   private final ComicSeriesToComicSeriesDetailsViewModelMapper mapper;
   private int comicSeriesKey;
 
-  @Inject public ComicSeriesDetailsPresenter(UseCaseHandler useCaseHandler,
+  @Inject1
+  public ComicSeriesDetailsPresenter(UseCaseHandler useCaseHandler,
       GetComicSeriesDetails getComicSeriesDetails,
       ComicSeriesToComicSeriesDetailsViewModelMapper mapper) {
     super(useCaseHandler);

@@ -16,98 +16,99 @@
 
 
 buildscript {
-  repositories {
-    jcenter()
-    mavenCentral()
-    maven { url "https://jitpack.io" }
-  }
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
 }
 
 
 apply plugin: 'com.android.application'
 
 private Properties loadMarvelProperties() {
-  Properties props = new Properties()
-  props.load(new FileInputStream("./sample/marvel.properties"))
-  props
+    Properties props = new Properties()
+    props.load(new FileInputStream("./sample/marvel.properties"))
+    props
 }
 
 private checkMarvelProperties() {
-  new File("./sample/marvel.properties").exists()
+    new File("./sample/marvel.properties").exists()
 }
 
 def getPublicMarvelKey() {
-  if (checkMarvelProperties()) {
-    Properties props = loadMarvelProperties()
-    return props['MARVEL_PUBLIC_KEY']
-  }
-  "null"
+    if (checkMarvelProperties()) {
+        Properties props = loadMarvelProperties()
+        return props['MARVEL_PUBLIC_KEY']
+    }
+    "null"
 }
 
 def getPrivateMarvelKey() {
-  if (checkMarvelProperties()) {
-    Properties props = loadMarvelProperties()
-    return props['MARVEL_PRIVATE_KEY']
-  }
-  "null"
+    if (checkMarvelProperties()) {
+        Properties props = loadMarvelProperties()
+        return props['MARVEL_PRIVATE_KEY']
+    }
+    "null"
 }
 
 def preDexEnabled = "true".equals(System.getProperty("pre-dex", "true"))
 
 android {
-  compileSdkVersion 23
-  buildToolsVersion "23.0.3"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
 
-  dexOptions {
-    preDexLibraries = preDexEnabled
-  }
+    dexOptions {
+        preDexLibraries = preDexEnabled
+    }
 
-  defaultConfig {
-    applicationId "com.karumi.rosie.sample"
-    minSdkVersion 18
-    targetSdkVersion 23
-    versionCode 1
-    versionName "1.0"
-    buildConfigField "String", "MARVEL_PUBLIC_KEY", getPublicMarvelKey()
-    buildConfigField "String", "MARVEL_PRIVATE_KEY", getPrivateMarvelKey()
-    testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
-  }
+    defaultConfig {
+        applicationId "com.karumi.rosie.sample"
+        minSdkVersion 18
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        buildConfigField "String", "MARVEL_PUBLIC_KEY", getPublicMarvelKey()
+        buildConfigField "String", "MARVEL_PRIVATE_KEY", getPrivateMarvelKey()
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
 }
 
 dependencies {
-  compile fileTree(include: ['*.jar'], dir: 'libs')
-  compile 'com.android.support:appcompat-v7:23.4.0'
-  compile 'com.android.support:support-v13:23.4.0'
-  compile 'com.android.support:design:23.4.0'
-  compile 'com.squareup.picasso:picasso:2.5.2'
-  compile 'com.karumi:dividers:1.0.3'
-  compile 'com.victor:lib:1.0.1' // https://github.com/yankai-victor/Loading
-  compile 'com.karumi:marvelapiclient:0.0.4'
-  compile 'com.github.pedrovgs:renderers:3.0.0'
-  compile 'com.jakewharton:butterknife:7.0.1'
-  provided 'com.squareup.dagger:dagger-compiler:1.2.2'
-  compile project(':rosie')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:support-v13:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.karumi:dividers:1.0.3'
+    compile 'com.victor:lib:1.0.1' // https://github.com/yankai-victor/Loading
+    compile 'com.karumi:marvelapiclient:0.0.4'
+    compile 'com.github.pedrovgs:renderers:3.0.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    //provided 'com.squareup.dagger:dagger-compiler:1.2.2'
+    //provided project(path: ':one-dagger-compiler', transitive: false)
+    compile project(':rosie')
 
-  androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
-  androidTestCompile('com.google.dexmaker:dexmaker-mockito:1.2') {
-    exclude group: 'org.hamcrest', module: 'hamcrest-core'
-  }
-  androidTestCompile 'com.android.support.test:runner:0.4.1'
-  androidTestCompile 'com.android.support.test:rules:0.4.1'
-  androidTestCompile 'org.mockito:mockito-core:1.10.19'
-  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1') {
-    exclude group: 'javax.inject', module: 'javax.inject'
-    exclude group: 'com.squareup', module: 'javawriter'
-  }
-  androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.1') {
-    exclude module: 'support-annotations'
-    exclude module: 'recyclerview-v7'
-    exclude module: 'support-v4'
-  }
-  androidTestCompile('com.android.support.test.espresso:espresso-intents:2.2.1')
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    androidTestCompile('com.google.dexmaker:dexmaker-mockito:1.2') {
+        exclude group: 'org.hamcrest', module: 'hamcrest-core'
+    }
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
+    androidTestCompile 'org.mockito:mockito-core:1.10.19'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1') {
+        exclude group: 'javax.inject', module: 'javax.inject'
+        exclude group: 'com.squareup', module: 'javawriter'
+    }
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.1') {
+        exclude module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'support-v4'
+    }
+    androidTestCompile('com.android.support.test.espresso:espresso-intents:2.2.1')
 }
 
 configurations.all {
-  resolutionStrategy.force 'com.android.support:support-annotations:23.4.0'
+    resolutionStrategy.force 'com.android.support:support-annotations:23.4.0'
 }
 

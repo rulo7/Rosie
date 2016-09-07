@@ -20,11 +20,12 @@ import com.karumi.rosie.repository.PaginatedRosieRepository;
 import com.karumi.rosie.repository.datasource.paginated.PaginatedCacheDataSource;
 import com.karumi.rosie.repository.datasource.paginated.PaginatedReadableDataSource;
 import com.karumi.rosie.sample.characters.domain.model.Character;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class CharactersRepository extends PaginatedRosieRepository<String, Character> {
 
-  @Inject public CharactersRepository(CharacterDataSourceFactory characterDataSourceFactory,
+  @Inject1
+  public CharactersRepository(CharacterDataSourceFactory characterDataSourceFactory,
       PaginatedCacheDataSource<String, Character> inMemoryPaginatedCache) {
     addCacheDataSources(inMemoryPaginatedCache);
     addPaginatedCacheDataSources(inMemoryPaginatedCache);

@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:1.2.3"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+shadowJar {
+    relocate 'dagger.internal.codegen', 'dagger.internal.codegen1'
+}
+
+import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
+
+shadowJar {
+    transform(ServiceFileTransformer)
+    classifier = ''
+}
+
+dependencies {
+    compile "com.squareup.dagger:dagger-compiler:1.2.2"
+}

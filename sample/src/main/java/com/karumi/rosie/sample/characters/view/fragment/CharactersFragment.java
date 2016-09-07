@@ -44,14 +44,16 @@ import com.pedrogomez.renderers.RendererBuilder;
 import com.victor.loading.rotate.RotateLoading;
 import java.util.Collection;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class CharactersFragment extends MarvelFragment implements CharactersPresenter.View {
 
   @Bind(R.id.rv_characters) RecyclerView charactersView;
   @Bind(R.id.loading) RotateLoading loadingView;
 
-  @Inject @Presenter CharactersPresenter presenter;
+  @Inject1
+  @Presenter
+  CharactersPresenter presenter;
 
   private RVRendererAdapter<CharacterViewModel> charactersAdapter;
   private CharactersAdapteeCollection charactersCollection;

@@ -20,7 +20,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.karumi.rosie.application.RosieApplication;
 import com.karumi.rosie.module.RosieActivityModule;
-import dagger.ObjectGraph;
+import dagger.ObjectGraph1;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +32,7 @@ import java.util.List;
 public abstract class RosieAppCompatActivity extends AppCompatActivity
     implements RosiePresenter.View, Injectable {
 
-  private ObjectGraph activityScopeGraph;
+  private ObjectGraph1 activityScopeGraph;
   private PresenterLifeCycleLinker presenterLifeCycleLinker = new PresenterLifeCycleLinker();
 
   /**

@@ -18,7 +18,7 @@ package com.karumi.rosie.application;
 
 import android.app.Application;
 import com.karumi.rosie.module.RosieAndroidModule;
-import dagger.ObjectGraph;
+import dagger.ObjectGraph1;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,13 +32,14 @@ import java.util.List;
  * Extend this class in your project to be able to use Rosie Framework.
  */
 public class RosieApplication extends Application {
-  private ObjectGraph graph;
+  private ObjectGraph1 graph;
 
   /**
    * Initializes the object graph associated to the application scope and injects the application
    * instance.
    */
-  @Override public void onCreate() {
+  @Override
+  public void onCreate() {
     super.onCreate();
     initGraph();
     injectApplication();
@@ -57,10 +58,9 @@ public class RosieApplication extends Application {
    * returns a new one with all the dependencies already created plus the one resolved with the
    * list of modules passed as argument.
    */
-  public ObjectGraph plusGraph(List<Object> activityScopeModules) {
+  public ObjectGraph1 plusGraph(List<Object> activityScopeModules) {
     if (activityScopeModules == null) {
-      throw new IllegalArgumentException(
-          "You can't extend the application graph with a null list of modules");
+      throw new IllegalArgumentException("You can't extend the application graph with a null list of modules");
     }
     return graph.plus(activityScopeModules.toArray());
   }
@@ -86,11 +86,10 @@ public class RosieApplication extends Application {
     List<Object> rosieModules = getRosieModules();
     List<Object> modules = new ArrayList<>(rosieModules);
     List<Object> applicationModules = getApplicationModules();
-
     if (applicationModules != null) {
       modules.addAll(applicationModules);
     }
-    graph = ObjectGraph.create(modules.toArray());
+    graph = ObjectGraph1.create(modules.toArray());
   }
 
   private void injectApplication() {

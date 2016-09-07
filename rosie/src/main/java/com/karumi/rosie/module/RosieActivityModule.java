@@ -19,14 +19,15 @@ package com.karumi.rosie.module;
 import android.app.Activity;
 import android.content.Context;
 import com.karumi.rosie.daggerutils.ForActivity;
-import dagger.Module;
-import dagger.Provides;
+import dagger.Module1;
+import dagger.Provides1;
 
 /**
  * Dagger module created to provide activity scope dependencies like the Context associated to the
  * current Activity. Requires an instance of the current Activity to be able to provide it.
  */
-@Module(library = true) public class RosieActivityModule {
+@Module1(library = true)
+public class RosieActivityModule {
 
   private final Context context;
 
@@ -35,7 +36,9 @@ import dagger.Provides;
     this.context = activity;
   }
 
-  @ForActivity @Provides Context provideCurrentActivityContext() {
+  @ForActivity
+  @Provides1
+  Context provideCurrentActivityContext() {
     return context;
   }
 

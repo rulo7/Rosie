@@ -33,7 +33,7 @@ import com.squareup.picasso.Picasso;
 import com.victor.loading.rotate.RotateLoading;
 import java.util.Arrays;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class CharacterDetailsActivity extends MarvelActivity
     implements CharacterDetailsPresenter.View {
@@ -47,7 +47,15 @@ public class CharacterDetailsActivity extends MarvelActivity
   @Bind(R.id.tv_description) TextView characterDescriptionView;
   @Bind(R.id.loading) RotateLoading loadingView;
 
-  @Inject @Presenter CharacterDetailsPresenter presenter;
+  @Inject1
+  @Presenter
+  CharacterDetailsPresenter presenter;
+
+  public static void open(Context context, String characterKey) {
+    Intent intent = new Intent(context, CharacterDetailsActivity.class);
+    intent.putExtra(CHARACTER_KEY_EXTRA, characterKey);
+    context.startActivity(intent);
+  }
 
   @Override protected int getLayoutId() {
     return R.layout.activity_character_details;
@@ -93,11 +101,5 @@ public class CharacterDetailsActivity extends MarvelActivity
     } else {
       characterDescriptionView.setText(getString(R.string.no_description));
     }
-  }
-
-  public static void open(Context context, String characterKey) {
-    Intent intent = new Intent(context, CharacterDetailsActivity.class);
-    intent.putExtra(CHARACTER_KEY_EXTRA, characterKey);
-    context.startActivity(intent);
   }
 }

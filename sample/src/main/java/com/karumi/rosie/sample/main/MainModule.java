@@ -19,9 +19,9 @@ package com.karumi.rosie.sample.main;
 import com.karumi.rosie.sample.characters.view.fragment.CharactersFragment;
 import com.karumi.rosie.sample.comics.view.fragment.ComicSeriesFragment;
 import com.karumi.rosie.sample.main.view.activity.MainActivity;
-import dagger.Module;
+import dagger.Module1;
 
-@Module(library = true,
+@Module1(library = true,
     complete = false,
     injects = {
         MainActivity.class, CharactersFragment.class, ComicSeriesFragment.class

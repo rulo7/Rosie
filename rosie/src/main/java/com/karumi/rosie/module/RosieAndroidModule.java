@@ -26,15 +26,16 @@ import com.karumi.rosie.domain.usecase.error.ErrorHandler;
 import com.karumi.rosie.domain.usecase.jobqueue.TaskSchedulerJobQueue;
 import com.path.android.jobqueue.JobManager;
 import com.path.android.jobqueue.config.Configuration;
-import dagger.Module;
-import dagger.Provides;
-import javax.inject.Singleton;
+import dagger.Module1;
+import dagger.Provides1;
+import javax.inject.Singleton1;
 
 /**
  * A module for Android-specific dependencies which require a {@link Context} or
  * {@link android.app.Application} to be created.
  */
-@Module(library = true, injects = RosieApplication.class) public class RosieAndroidModule {
+@Module1(library = true, injects = RosieApplication.class)
+public class RosieAndroidModule {
 
   private static final int MIN_CONSUMER_COUNT = 1;
   private static final int MAX_CONSUMER_COUNT = 5;
@@ -51,20 +52,28 @@ import javax.inject.Singleton;
    * Allow the application context to be injected but requires it to be annotated with
    * {@link ForApplication @Annotation} to explicitly differentiate it from an activity context.
    */
-  @Provides @ForApplication Context provideApplicationContext() {
+  @Provides1
+  @ForApplication
+  Context provideApplicationContext() {
     return context;
   }
 
-  @Provides @Singleton public UseCaseHandler provideUseCaseHandler(TaskScheduler taskScheduler,
+  @Provides1
+  @Singleton1
+  public UseCaseHandler provideUseCaseHandler(TaskScheduler taskScheduler,
       ErrorHandler errorHandler) {
     return new UseCaseHandler(taskScheduler, errorHandler);
   }
 
-  @Provides @Singleton public TaskScheduler provideTaskScheduler(JobManager jobManager) {
+  @Provides1
+  @Singleton1
+  public TaskScheduler provideTaskScheduler(JobManager jobManager) {
     return new TaskSchedulerJobQueue(jobManager);
   }
 
-  @Provides @Singleton public JobManager provideJobManager(@ForApplication Context context) {
+  @Provides1
+  @Singleton1
+  public JobManager provideJobManager(@ForApplication Context context) {
     Configuration config = new Configuration.Builder(context).minConsumerCount(MIN_CONSUMER_COUNT)
         .maxConsumerCount(MAX_CONSUMER_COUNT)
         .loadFactor(LOAD_FACTOR)

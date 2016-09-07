@@ -44,15 +44,15 @@ import com.karumi.rosie.sample.comics.view.fragment.ComicSeriesFragment;
 import com.karumi.rosie.sample.idlingresources.ViewPagerIdlingResource;
 import com.karumi.rosie.sample.main.domain.usecase.GetMarvelSettings;
 import com.karumi.rosie.sample.recyclerview.RecyclerViewInteraction;
-import dagger.Module;
-import dagger.Provides;
+import dagger.Module1;
+import dagger.Provides1;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.Singleton1;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -77,123 +77,114 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@RunWith(AndroidJUnit4.class) @LargeTest public class MainActivityTest
-    extends InjectedInstrumentationTest {
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public class MainActivityTest extends InjectedInstrumentationTest {
 
   private static final int ANY_NUMBER_OF_CHARACTERS = 10;
   private static final int ANY_NUMBER_OF_COMIC_SERIES = 10;
   private static final String ANY_EXCEPTION = "AnyException";
-  @Inject CharactersRepository charactersRepository;
-  @Inject ComicSeriesRepository comicSeriesRepository;
-  @Inject GetMarvelSettings getMarvelSettings;
+  @Rule
+  public IntentsTestRule<MainActivity> activityRule = new IntentsTestRule<>(MainActivity.class, true, false);
+  @Inject
+  CharactersRepository charactersRepository;
+  @Inject
+  ComicSeriesRepository comicSeriesRepository;
+  @Inject
+  GetMarvelSettings getMarvelSettings;
 
-  @Rule public IntentsTestRule<MainActivity> activityRule =
-      new IntentsTestRule<>(MainActivity.class, true, false);
-
-  @Test public void shouldShowFakeDataBarWhenMarvelKeysHasNotBeenProvided() throws Exception {
+  @Test
+  public void shouldShowFakeDataBarWhenMarvelKeysHasNotBeenProvided() throws Exception {
     givenFakeDataIsEnable();
     givenEmptyCharacters();
     givenEmptyComicSeries();
-
     startActivity();
-
     onView(withId(R.id.tv_disclaimer)).check(matches(isDisplayed()));
   }
 
-  @Test public void shouldShowErrorIfSomethingWrongHappens() throws Exception {
+  @Test
+  public void shouldShowErrorIfSomethingWrongHappens() throws Exception {
     givenExceptionObtainingCharacters();
     givenEmptyComicSeries();
-
     startActivity();
-
     onView(allOf(withId(android.support.design.R.id.snackbar_text), withText("¯\\_(ツ)_/¯"))).check(
-        matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+            matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
   }
 
-  @Test public void shouldShowConnectionErrorIfHaveConnectionTroubles() throws Exception {
+  @Test
+  public void shouldShowConnectionErrorIfHaveConnectionTroubles() throws Exception {
     givenConnectionExceptionObtainingCharacters();
     givenEmptyComicSeries();
-
     startActivity();
-
     onView(allOf(withId(android.support.design.R.id.snackbar_text),
-        withText("Connection troubles. Ask to Ironman!"))).check(
-        matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+            withText("Connection troubles. Ask to Ironman!"))).check(
+            matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
   }
 
-  @Test public void shouldHideLoadingWhenDataIsLoaded() throws Exception {
+  @Test
+  public void shouldHideLoadingWhenDataIsLoaded() throws Exception {
     givenEmptyCharacters();
     givenEmptyComicSeries();
     startActivity();
-
     onView(allOf(withId(R.id.loading), withAncestor(withId(R.id.fragment_characters)))).check(
-        matches(not(isDisplayed())));
+            matches(not(isDisplayed())));
   }
 
-  @Test public void shouldShowCharacterNameIfThereAreCharacters() throws Exception {
+  @Test
+  public void shouldShowCharacterNameIfThereAreCharacters() throws Exception {
     List<Character> superHeroes = givenThereAreSomeCharacters(ANY_NUMBER_OF_CHARACTERS);
-
     startActivity();
-
-    RecyclerViewInteraction.<Character>onRecyclerView(withId(R.id.rv_characters))
-        .withItems(superHeroes)
-        .check(new RecyclerViewInteraction.ItemViewAssertion<Character>() {
-          @Override public void check(Character character, View view, NoMatchingViewException e) {
-            matches(hasDescendant(withText(character.getName()))).check(view, e);
-          }
-        });
+    RecyclerViewInteraction.<Character>onRecyclerView(withId(R.id.rv_characters)).withItems(superHeroes)
+            .check(new RecyclerViewInteraction.ItemViewAssertion<Character>() {
+              @Override
+              public void check(Character character, View view, NoMatchingViewException e) {
+                matches(hasDescendant(withText(character.getName()))).check(view, e);
+              }
+            });
   }
 
-  @Test public void shouldOpenCharacterDetailActivityOnRecyclerViewItemClicked() throws Exception {
+  @Test
+  public void shouldOpenCharacterDetailActivityOnRecyclerViewItemClicked() throws Exception {
     List<Character> characters = givenThereAreSomeCharacters(ANY_NUMBER_OF_CHARACTERS);
     int characterIndex = 0;
     startActivity();
-
     onView(withId(R.id.rv_characters)).
-        perform(RecyclerViewActions.actionOnItemAtPosition(characterIndex, click()));
-
+            perform(RecyclerViewActions.actionOnItemAtPosition(characterIndex, click()));
     Character characterSelected = characters.get(characterIndex);
     intended(hasComponent(CharacterDetailsActivity.class.getCanonicalName()));
     intended(hasExtra("CharacterDetailsActivity.CharacterKey", characterSelected.getKey()));
   }
 
-  @Test public void shouldShowComicSeriesIfTheAreComicSeriesAndTabIsShown() throws Exception {
+  @Test
+  public void shouldShowComicSeriesIfTheAreComicSeriesAndTabIsShown() throws Exception {
     givenThereAreSomeCharacters(ANY_NUMBER_OF_CHARACTERS);
     List<ComicSeries> comicSeries = givenThereAreSomeComicSeries(ANY_NUMBER_OF_COMIC_SERIES);
-
     startActivity();
-
     onView(withId(R.id.vp_main)).perform(swipeLeft());
-
-    RecyclerViewInteraction.<ComicSeries>onRecyclerView(withId(R.id.rv_comics))
-        .withItems(comicSeries)
-        .check(new RecyclerViewInteraction.ItemViewAssertion<ComicSeries>() {
-          @Override public void check(ComicSeries comic, View view, NoMatchingViewException e) {
-            String textMatch =
-                String.format("%1$s (%2$s)", comic.getName(), comic.getReleaseYear());
-            matches(hasDescendant(withText(textMatch))).check(view, e);
-          }
-        });
+    RecyclerViewInteraction.<ComicSeries>onRecyclerView(withId(R.id.rv_comics)).withItems(comicSeries)
+            .check(new RecyclerViewInteraction.ItemViewAssertion<ComicSeries>() {
+              @Override
+              public void check(ComicSeries comic, View view, NoMatchingViewException e) {
+                String textMatch = String.format("%1$s (%2$s)", comic.getName(), comic.getReleaseYear());
+                matches(hasDescendant(withText(textMatch))).check(view, e);
+              }
+            });
   }
 
-  @Test public void shouldOpenComicSeriesDetailActivityOnRecyclerViewItemClicked()
-      throws Exception {
+  @Test
+  public void shouldOpenComicSeriesDetailActivityOnRecyclerViewItemClicked() throws Exception {
     givenThereAreSomeCharacters(ANY_NUMBER_OF_CHARACTERS);
     List<ComicSeries> comicSeries = givenThereAreSomeComicSeries(ANY_NUMBER_OF_COMIC_SERIES);
     givenAnyComicSeriesDetail();
     int comicSeriesIndex = 0;
     Activity activity = startActivity();
-    registerIdlingResources(
-        new ViewPagerIdlingResource((ViewPager) activity.findViewById(R.id.vp_main)));
+    registerIdlingResources(new ViewPagerIdlingResource((ViewPager) activity.findViewById(R.id.vp_main)));
     onView(withId(R.id.vp_main)).perform(swipeLeft());
-
     onView(withId(R.id.rv_comics)).
-        perform(RecyclerViewActions.actionOnItemAtPosition(comicSeriesIndex, click()));
-
+            perform(RecyclerViewActions.actionOnItemAtPosition(comicSeriesIndex, click()));
     ComicSeries comicSeriesSelected = comicSeries.get(comicSeriesIndex);
     intended(hasComponent(ComicSeriesDetailsActivity.class.getCanonicalName()));
-    intended(hasExtra("ComicSeriesDetailsActivity.ComicSeriesKey",
-        comicSeriesSelected.getKey().intValue()));
+    intended(hasExtra("ComicSeriesDetailsActivity.ComicSeriesKey", comicSeriesSelected.getKey().intValue()));
   }
 
   private void givenAnyComicSeriesDetail() throws Exception {
@@ -204,7 +195,6 @@ import static org.mockito.Mockito.when;
     comicSeries.setComplete(true);
     comicSeries.setComics(new ArrayList<Comic>());
     comicSeries.setCoverUrl("https://i.annihil.us/u/prod/marvel/i/mg/c/60/55b6a28ef24fa.jpg");
-
     when(comicSeriesRepository.getComicSeriesDetail(any(Integer.class))).thenReturn(comicSeries);
   }
 
@@ -222,19 +212,17 @@ import static org.mockito.Mockito.when;
 
   private void givenExceptionObtainingCharacters() throws Exception {
     when(charactersRepository.getAll(ReadPolicy.CACHE_ONLY)).thenReturn(new ArrayList<Character>());
-    when(charactersRepository.getPage(any(Page.class))).thenThrow(
-        new MarvelApiException(ANY_EXCEPTION, null));
+    when(charactersRepository.getPage(any(Page.class))).thenThrow(new MarvelApiException(ANY_EXCEPTION, null));
   }
 
   private void givenConnectionExceptionObtainingCharacters() throws Exception {
     when(charactersRepository.getAll(ReadPolicy.CACHE_ONLY)).thenReturn(new ArrayList<Character>());
     when(charactersRepository.getPage(any(Page.class))).thenThrow(
-        new MarvelApiException(ANY_EXCEPTION, new UnknownHostException()));
+            new MarvelApiException(ANY_EXCEPTION, new UnknownHostException()));
   }
 
   private void givenEmptyComicSeries() throws Exception {
-    when(comicSeriesRepository.getAll(ReadPolicy.CACHE_ONLY)).thenReturn(
-        new ArrayList<ComicSeries>());
+    when(comicSeriesRepository.getAll(ReadPolicy.CACHE_ONLY)).thenReturn(new ArrayList<ComicSeries>());
     PaginatedCollection<ComicSeries> emptyPage = new PaginatedCollection<>();
     emptyPage.setPage(Page.withOffsetAndLimit(0, 0));
     emptyPage.setHasMore(false);
@@ -268,7 +256,8 @@ import static org.mockito.Mockito.when;
     return comics;
   }
 
-  @NonNull private Character getCharacter(int id) {
+  @NonNull
+  private Character getCharacter(int id) {
     Character character = new Character();
     character.setKey("" + id);
     character.setName("SuperHero - " + id);
@@ -277,7 +266,8 @@ import static org.mockito.Mockito.when;
     return character;
   }
 
-  @NonNull private ComicSeries getComicSeries(int id) {
+  @NonNull
+  private ComicSeries getComicSeries(int id) {
     ComicSeries comicSeries = new ComicSeries();
     comicSeries.setKey(id);
     comicSeries.setName("ComicSeries - " + id);
@@ -289,25 +279,33 @@ import static org.mockito.Mockito.when;
     return activityRule.launchActivity(null);
   }
 
-  @Override public List<Object> getTestModules() {
+  @Override
+  public List<Object> getTestModules() {
     return Arrays.asList((Object) new TestModule());
   }
 
-  @Module(overrides = true, library = true, complete = false,
-      injects = {
-          MainActivity.class, CharactersFragment.class, ComicSeriesFragment.class,
-          MainActivityTest.class, CharacterDetailsActivity.class
-      }) class TestModule {
+  @Module1(overrides = true, library = true, complete = false,
+          injects = {
+                  MainActivity.class, CharactersFragment.class, ComicSeriesFragment.class, MainActivityTest.class,
+                  CharacterDetailsActivity.class
+          })
+  class TestModule {
 
-    @Provides @Singleton public CharactersRepository provideCharactersRepository() {
+    @Provides1
+    @Singleton1
+    public CharactersRepository provideCharactersRepository() {
       return mock(CharactersRepository.class);
     }
 
-    @Provides @Singleton public ComicSeriesRepository provideComicSeriesRepository() {
+    @Provides1
+    @Singleton1
+    public ComicSeriesRepository provideComicSeriesRepository() {
       return mock(ComicSeriesRepository.class);
     }
 
-    @Provides @Singleton public GetMarvelSettings provideGetMarvelSettings() {
+    @Provides1
+    @Singleton1
+    public GetMarvelSettings provideGetMarvelSettings() {
       return mock(GetMarvelSettings.class);
     }
   }

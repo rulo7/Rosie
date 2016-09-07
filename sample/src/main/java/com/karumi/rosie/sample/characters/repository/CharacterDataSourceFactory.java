@@ -23,11 +23,12 @@ import com.karumi.rosie.sample.BuildConfig;
 import com.karumi.rosie.sample.characters.domain.model.Character;
 import com.karumi.rosie.sample.characters.repository.datasource.CharactersApiDataSource;
 import com.karumi.rosie.sample.characters.repository.datasource.CharactersFakeDataSource;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 class CharacterDataSourceFactory {
 
-  @Inject public CharacterDataSourceFactory() {
+  @Inject1
+  public CharacterDataSourceFactory() {
   }
 
   PaginatedReadableDataSource<String, Character> createDataSource() {

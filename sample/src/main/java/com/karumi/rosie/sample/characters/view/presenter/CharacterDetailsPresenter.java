@@ -25,7 +25,7 @@ import com.karumi.rosie.sample.characters.domain.model.Character;
 import com.karumi.rosie.sample.characters.domain.usecase.GetCharacterDetails;
 import com.karumi.rosie.sample.characters.view.viewmodel.CharacterDetailViewModel;
 import com.karumi.rosie.sample.characters.view.viewmodel.mapper.CharacterToCharacterDetailViewModelMapper;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class CharacterDetailsPresenter
     extends MarvelPresenter<CharacterDetailsPresenter.View> {
@@ -34,7 +34,8 @@ public class CharacterDetailsPresenter
   private final CharacterToCharacterDetailViewModelMapper mapper;
   private String characterKey;
 
-  @Inject public CharacterDetailsPresenter(UseCaseHandler useCaseHandler,
+  @Inject1
+  public CharacterDetailsPresenter(UseCaseHandler useCaseHandler,
       CharacterToCharacterDetailViewModelMapper mapper, GetCharacterDetails getCharacterDetails) {
     super(useCaseHandler);
     this.mapper = mapper;

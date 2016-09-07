@@ -38,7 +38,7 @@ import com.pedrogomez.renderers.RendererBuilder;
 import com.victor.loading.rotate.RotateLoading;
 import java.util.Arrays;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class ComicSeriesDetailsActivity extends MarvelActivity
     implements ComicSeriesDetailsPresenter.View {
@@ -51,9 +51,17 @@ public class ComicSeriesDetailsActivity extends MarvelActivity
   @Bind(R.id.loading) RotateLoading loadingView;
   @Bind(R.id.rv_comics) RecyclerView comicsView;
 
-  @Inject @Presenter ComicSeriesDetailsPresenter presenter;
+  @Inject1
+  @Presenter
+  ComicSeriesDetailsPresenter presenter;
 
   private RVRendererAdapter<ComicSeriesDetailViewModel> comicDetailsAdapter;
+
+  public static void open(Context context, int comicSeriesKey) {
+    Intent intent = new Intent(context, ComicSeriesDetailsActivity.class);
+    intent.putExtra(COMIC_SERIES_KEY_EXTRA, comicSeriesKey);
+    context.startActivity(intent);
+  }
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -90,12 +98,6 @@ public class ComicSeriesDetailsActivity extends MarvelActivity
     comicDetailsAdapter.clear();
     comicDetailsAdapter.addAll(comicSeries.getComicSeriesDetailViewModels());
     comicDetailsAdapter.notifyDataSetChanged();
-  }
-
-  public static void open(Context context, int comicSeriesKey) {
-    Intent intent = new Intent(context, ComicSeriesDetailsActivity.class);
-    intent.putExtra(COMIC_SERIES_KEY_EXTRA, comicSeriesKey);
-    context.startActivity(intent);
   }
 
   private void initializeComicsView() {

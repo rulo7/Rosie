@@ -20,13 +20,13 @@ import com.karumi.rosie.domain.usecase.UseCaseHandler;
 import com.karumi.rosie.sample.main.domain.usecase.GetMarvelSettings;
 import com.karumi.rosie.view.RosiePresenter;
 import com.karumi.rosie.view.loading.RosiePresenterWithLoading;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class FakeDataPresenter extends RosiePresenter<FakeDataPresenter.View> {
 
   private final GetMarvelSettings getMarvelSettings;
 
-  @Inject
+  @Inject1
   public FakeDataPresenter(GetMarvelSettings getMarvelSettings, UseCaseHandler useCaseHandler) {
     super(useCaseHandler);
     this.getMarvelSettings = getMarvelSettings;

@@ -28,7 +28,7 @@ import com.karumi.rosie.sample.comics.view.viewmodel.ComicSeriesViewModel;
 import com.karumi.rosie.sample.comics.view.viewmodel.mapper.ComicSeriesToComicSeriesViewModelMapper;
 import com.karumi.rosie.view.loading.RosiePresenterWithLoading;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class ComicsSeriesPresenter extends RosiePresenterWithLoading<ComicsSeriesPresenter.View> {
 
@@ -37,7 +37,8 @@ public class ComicsSeriesPresenter extends RosiePresenterWithLoading<ComicsSerie
   private final GetComicSeriesPage getComicSeriesPage;
   private int offset = 0;
 
-  @Inject public ComicsSeriesPresenter(UseCaseHandler useCaseHandler,
+  @Inject1
+  public ComicsSeriesPresenter(UseCaseHandler useCaseHandler,
       ComicSeriesToComicSeriesViewModelMapper mapper, GetComicSeriesPage getComicSeriesPage) {
     super(useCaseHandler);
     this.mapper = mapper;

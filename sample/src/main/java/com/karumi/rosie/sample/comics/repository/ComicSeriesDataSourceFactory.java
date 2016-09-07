@@ -22,11 +22,12 @@ import com.karumi.rosie.sample.BuildConfig;
 import com.karumi.rosie.sample.comics.repository.datasource.ComicSeriesApiDataSource;
 import com.karumi.rosie.sample.comics.repository.datasource.ComicSeriesDataSource;
 import com.karumi.rosie.sample.comics.repository.datasource.ComicSeriesFakeDataSource;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 class ComicSeriesDataSourceFactory {
 
-  @Inject public ComicSeriesDataSourceFactory() {
+  @Inject1
+  public ComicSeriesDataSourceFactory() {
   }
 
   ComicSeriesDataSource createDataSource() {

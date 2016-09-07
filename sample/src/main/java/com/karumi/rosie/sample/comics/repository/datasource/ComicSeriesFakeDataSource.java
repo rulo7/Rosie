@@ -27,7 +27,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class ComicSeriesFakeDataSource extends EmptyReadableDataSource<Integer, ComicSeries>
     implements ComicSeriesDataSource {
@@ -45,7 +45,8 @@ public class ComicSeriesFakeDataSource extends EmptyReadableDataSource<Integer, 
 
   private ComicSeries[] allComicSeries;
 
-  @Inject public ComicSeriesFakeDataSource() {
+  @Inject1
+  public ComicSeriesFakeDataSource() {
     initComicSeries();
   }
 
