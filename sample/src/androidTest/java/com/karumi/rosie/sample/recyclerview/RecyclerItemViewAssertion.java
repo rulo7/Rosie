@@ -16,7 +16,7 @@
  * https://gist.github.com/RomainPiel/ec10302a4687171a5e1a
  */
 
-package com.karumi.rosie.sample.recyclerview;
+package com.racobos.rosie.sample.recyclerview;
 
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.PerformException;

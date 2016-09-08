@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.karumi.rosie.sample.comics.view.activity;
+package com.racobos.rosie.sample.comics.view.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -24,16 +24,16 @@ import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.view.View;
 import com.karumi.marvelapiclient.MarvelApiException;
-import com.karumi.rosie.sample.InjectedInstrumentationTest;
-import com.karumi.rosie.sample.R;
-import com.karumi.rosie.sample.comics.domain.model.Comic;
-import com.karumi.rosie.sample.comics.domain.model.ComicSeries;
-import com.karumi.rosie.sample.comics.repository.ComicSeriesRepository;
-import com.karumi.rosie.sample.comics.view.viewmodel.ComicSeriesDetailViewModel;
-import com.karumi.rosie.sample.comics.view.viewmodel.ComicSeriesDetailsViewModel;
-import com.karumi.rosie.sample.comics.view.viewmodel.ComicViewModel;
-import com.karumi.rosie.sample.comics.view.viewmodel.mapper.ComicSeriesToComicSeriesDetailsViewModelMapper;
-import com.karumi.rosie.sample.recyclerview.RecyclerViewInteraction;
+import com.racobos.rosie.sample.InjectedInstrumentationTest;
+import com.racobos.rosie.sample.R;
+import com.racobos.rosie.sample.comics.domain.model.Comic;
+import com.racobos.rosie.sample.comics.domain.model.ComicSeries;
+import com.racobos.rosie.sample.comics.repository.ComicSeriesRepository;
+import com.racobos.rosie.sample.comics.view.viewmodel.ComicSeriesDetailViewModel;
+import com.racobos.rosie.sample.comics.view.viewmodel.ComicSeriesDetailsViewModel;
+import com.racobos.rosie.sample.comics.view.viewmodel.ComicViewModel;
+import com.racobos.rosie.sample.comics.view.viewmodel.mapper.ComicSeriesToComicSeriesDetailsViewModelMapper;
+import com.racobos.rosie.sample.recyclerview.RecyclerViewInteraction;
 import dagger.Module1;
 import dagger.Provides1;
 import java.net.UnknownHostException;

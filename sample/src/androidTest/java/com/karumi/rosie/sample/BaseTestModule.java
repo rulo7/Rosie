@@ -14,11 +14,11 @@
  *  limitations under the License.
  */
 
-package com.karumi.rosie.sample;
+package com.racobos.rosie.sample;
 
 import android.content.Context;
-import com.karumi.rosie.daggerutils.ForActivity;
-import com.karumi.rosie.sample.main.MainModule;
+import com.racobos.rosie.daggerutils.ForActivity;
+import com.racobos.rosie.sample.main.MainModule;
 import dagger.Module1;
 import dagger.Provides1;
 

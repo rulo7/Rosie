@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.karumi.rosie.sample.main.view.activity;
+package com.racobos.rosie.sample.main.view.activity;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -27,23 +27,23 @@ import android.support.v4.view.ViewPager;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import com.karumi.marvelapiclient.MarvelApiException;
-import com.karumi.rosie.repository.PaginatedCollection;
-import com.karumi.rosie.repository.datasource.paginated.Page;
-import com.karumi.rosie.repository.policy.ReadPolicy;
-import com.karumi.rosie.sample.InjectedInstrumentationTest;
-import com.karumi.rosie.sample.R;
-import com.karumi.rosie.sample.characters.domain.model.Character;
-import com.karumi.rosie.sample.characters.repository.CharactersRepository;
-import com.karumi.rosie.sample.characters.view.activity.CharacterDetailsActivity;
-import com.karumi.rosie.sample.characters.view.fragment.CharactersFragment;
-import com.karumi.rosie.sample.comics.domain.model.Comic;
-import com.karumi.rosie.sample.comics.domain.model.ComicSeries;
-import com.karumi.rosie.sample.comics.repository.ComicSeriesRepository;
-import com.karumi.rosie.sample.comics.view.activity.ComicSeriesDetailsActivity;
-import com.karumi.rosie.sample.comics.view.fragment.ComicSeriesFragment;
-import com.karumi.rosie.sample.idlingresources.ViewPagerIdlingResource;
-import com.karumi.rosie.sample.main.domain.usecase.GetMarvelSettings;
-import com.karumi.rosie.sample.recyclerview.RecyclerViewInteraction;
+import com.racobos.rosie.repository.PaginatedCollection;
+import com.racobos.rosie.repository.datasource.paginated.Page;
+import com.racobos.rosie.repository.policy.ReadPolicy;
+import com.racobos.rosie.sample.InjectedInstrumentationTest;
+import com.racobos.rosie.sample.R;
+import com.racobos.rosie.sample.characters.domain.model.Character;
+import com.racobos.rosie.sample.characters.repository.CharactersRepository;
+import com.racobos.rosie.sample.characters.view.activity.CharacterDetailsActivity;
+import com.racobos.rosie.sample.characters.view.fragment.CharactersFragment;
+import com.racobos.rosie.sample.comics.domain.model.Comic;
+import com.racobos.rosie.sample.comics.domain.model.ComicSeries;
+import com.racobos.rosie.sample.comics.repository.ComicSeriesRepository;
+import com.racobos.rosie.sample.comics.view.activity.ComicSeriesDetailsActivity;
+import com.racobos.rosie.sample.comics.view.fragment.ComicSeriesFragment;
+import com.racobos.rosie.sample.idlingresources.ViewPagerIdlingResource;
+import com.racobos.rosie.sample.main.domain.usecase.GetMarvelSettings;
+import com.racobos.rosie.sample.recyclerview.RecyclerViewInteraction;
 import dagger.Module1;
 import dagger.Provides1;
 import java.net.UnknownHostException;
@@ -70,7 +70,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static com.karumi.rosie.sample.AncestorMatcher.withAncestor;
+import static com.racobos.rosie.sample.AncestorMatcher.withAncestor;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.not;
 import static org.mockito.Matchers.any;

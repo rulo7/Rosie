@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.karumi.rosie.sample.idlingresources;
+package com.racobos.rosie.sample.idlingresources;
 
 import android.support.test.espresso.IdlingResource;
 import android.support.v4.view.ViewPager;

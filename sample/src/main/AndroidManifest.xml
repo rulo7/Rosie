@@ -15,7 +15,7 @@
   ~ limitations under the License.
   -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.karumi.rosie.sample"
+    package="com.racobos.rosie.sample"
     >
 
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>

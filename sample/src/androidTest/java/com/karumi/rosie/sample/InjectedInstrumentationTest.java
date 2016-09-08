@@ -14,13 +14,13 @@
  *  limitations under the License.
  */
 
-package com.karumi.rosie.sample;
+package com.racobos.rosie.sample;
 
 import android.app.Instrumentation;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.IdlingResource;
-import com.karumi.rosie.sample.main.MainApplication;
+import com.racobos.rosie.sample.main.MainApplication;
 import dagger.ObjectGraph1;
 import java.util.LinkedList;
 import java.util.List;

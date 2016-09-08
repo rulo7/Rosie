@@ -17,11 +17,11 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.karumi.rosie"
+    package="com.racobos.rosie"
     >
 
   <application
-      android:name=".application.RosieApplication"
+      android:name="com.racobos.rosie.application.RosieApplication"
       android:allowBackup="true"
       >
 

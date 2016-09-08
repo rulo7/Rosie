@@ -16,6 +16,9 @@
 apply plugin: 'com.android.library'
 apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
 
+def versionLibCode = 1
+def versionLibName = '0.0.1'
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -23,6 +26,18 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 23
+        versionCode versionLibCode
+        versionName versionLibName
+    }
+
+    packagingOptions {
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
@@ -30,8 +45,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
 
-    provided project(path: ':one-dagger-compiler', transitive: false, configuration: 'shadow')
-    compile project(path: ':one-dagger-library', transitive: false, configuration: 'shadow')
+    /*provided project(path: ':one-dagger-compiler', transitive: false, configuration: 'shadow')
+    compile project(path: ':one-dagger-library', transitive: false, configuration: 'shadow')*/
+
+    compile fileTree(dir: 'libs', include: ['one-dagger-library-all.jar'])
+    provided fileTree(dir: 'libs', include: ['one-dagger-compiler.jar'])
+
 
     compile 'com.birbit:android-priority-jobqueue:1.3.5'
 
@@ -39,3 +58,70 @@ dependencies {
     testCompile 'org.mockito:mockito-all:1.10.19'
     testCompile 'org.robolectric:robolectric:2.4'
 }
+
+//------BINTRAY----
+
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+Properties properties = new Properties()
+if (project.rootProject.file('local.properties').exists()) {
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+}
+
+ext {
+    // Where you will see your artifact in Bintray's web interface
+    // The "bintrayName" should match the name of the Bintray repo.
+    bintrayRepo = 'maven'
+    bintrayName = 'rosie_compatible_dagger_2'
+
+    // Maven metadata
+    publishedGroupId = 'com.racobos'
+    libraryName = 'rosie_compatible_dagger_2'
+    // Save yourself a head ache, and set this equal to the name of the Android Studio library
+    // module. The artifact name needs to match the name of the library.
+    artifact = 'rosie_compatible_dagger_2'
+
+    libraryDescription =
+            'Just a simple activity that show all the images and videos in a gallery and allows to select one and retrieve it'
+    libraryVersion = versionLibName
+
+    developerId = 'rulo7'
+    developerName = 'Raúl Cobos Hernando'
+    developerEmail = 'raulcobosh@gmail.com'
+}
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "rosie_compatible_dagger_2"
+        licenses = ["Apache-2.0"]
+        publish = true
+        version {
+            name = versionLibName
+            desc = '\t\n' + 'Rosie is a Framework created by Karumi organization and It is dependency of dagger1. \n' +
+                    'If you want to use dagger 2 into your project and use Rosie, you have a problem. But this, is the solution, with this version, dagger 1 and dagger 2 can live together and you can to use Rosie in your project with dagger 2.'
+            vcsUrl = 'https://github.com/rulo7/Rosie'
+        }
+    }
+}
+
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'https://raw.githubusercontent.com/borjabravo10/JCenter/master/installv1.gradle'
+    apply from: 'https://raw.githubusercontent.com/borjabravo10/JCenter/master/bintrayv1.gradle'
+}
+
+allprojects {
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+    }
+}
+
+bintrayUpload.mustRunAfter install
+task remoteUpload(dependsOn: ['install', 'bintrayUpload'])
+
+//----

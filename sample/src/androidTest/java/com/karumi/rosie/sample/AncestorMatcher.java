@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.karumi.rosie.sample;
+package com.racobos.rosie.sample;
 
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.view.View;

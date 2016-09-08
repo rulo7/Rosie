@@ -14,17 +14,17 @@
  *  limitations under the License.
  */
 
-package com.karumi.rosie.sample.characters.view.activity;
+package com.racobos.rosie.sample.characters.view.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.espresso.matcher.ViewMatchers;
 import com.karumi.marvelapiclient.MarvelApiException;
-import com.karumi.rosie.sample.InjectedInstrumentationTest;
-import com.karumi.rosie.sample.R;
-import com.karumi.rosie.sample.characters.domain.model.Character;
-import com.karumi.rosie.sample.characters.repository.CharactersRepository;
+import com.racobos.rosie.sample.InjectedInstrumentationTest;
+import com.racobos.rosie.sample.R;
+import com.racobos.rosie.sample.characters.domain.model.Character;
+import com.racobos.rosie.sample.characters.repository.CharactersRepository;
 import dagger.Module1;
 import dagger.Provides1;
 import java.net.UnknownHostException;
