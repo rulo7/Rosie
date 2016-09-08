@@ -17,12 +17,13 @@
 package com.karumi.rosie.sample.characters;
 
 import com.karumi.rosie.sample.characters.view.activity.CharacterDetailsActivity;
-import dagger.Module;
+import dagger.Module1;
 
-@Module(
-    library = true,
-    complete = false,
-    injects = {
-        CharacterDetailsActivity.class
-    }) public class CharactersModule {
+@Module1(
+        library = true,
+        complete = false,
+        injects = {
+                CharacterDetailsActivity.class
+        })
+public class CharactersModule {
 }

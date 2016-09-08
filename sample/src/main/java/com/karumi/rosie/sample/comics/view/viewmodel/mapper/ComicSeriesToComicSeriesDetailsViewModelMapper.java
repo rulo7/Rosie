@@ -26,12 +26,13 @@ import com.karumi.rosie.sample.comics.view.viewmodel.ComicViewModel;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class ComicSeriesToComicSeriesDetailsViewModelMapper
     extends Mapper<ComicSeries, ComicSeriesDetailsViewModel> {
 
-  @Inject public ComicSeriesToComicSeriesDetailsViewModelMapper() {
+  @Inject1
+  public ComicSeriesToComicSeriesDetailsViewModelMapper() {
   }
 
   @Override public ComicSeriesDetailsViewModel map(ComicSeries comicSeries) {

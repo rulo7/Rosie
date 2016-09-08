@@ -19,14 +19,15 @@ package com.karumi.rosie.daggerutils;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
-import javax.inject.Qualifier;
+import javax.inject.Qualifier1;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Provides the {@link android.content.Context} of your current activity.
  */
-@Qualifier @Retention(RUNTIME)
+@Qualifier1
+@Retention(RUNTIME)
 @Target({ ElementType.PARAMETER, ElementType.METHOD })
 public @interface ForActivity {
 

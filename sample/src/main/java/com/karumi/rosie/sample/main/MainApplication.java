@@ -17,7 +17,7 @@
 package com.karumi.rosie.sample.main;
 
 import com.karumi.rosie.application.RosieApplication;
-import dagger.ObjectGraph;
+import dagger.ObjectGraph1;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,18 +25,20 @@ import java.util.List;
  * Sample application that registers the global application dependencies.
  */
 public class MainApplication extends RosieApplication {
-  private ObjectGraph fakeObjectGraph;
+  private ObjectGraph1 fakeObjectGraph;
 
-  @Override protected List<Object> getApplicationModules() {
+  @Override
+  protected List<Object> getApplicationModules() {
     return Arrays.asList((Object) new ApplicationModule());
   }
 
-  public void replaceGraph(ObjectGraph objectGraph) {
+  public void replaceGraph(ObjectGraph1 objectGraph) {
     this.fakeObjectGraph = objectGraph;
   }
 
-  @Override public ObjectGraph plusGraph(List<Object> activityScopeModules) {
-    ObjectGraph newObjectGraph;
+  @Override
+  public ObjectGraph1 plusGraph(List<Object> activityScopeModules) {
+    ObjectGraph1 newObjectGraph;
     if (fakeObjectGraph == null) {
       newObjectGraph = super.plusGraph(activityScopeModules);
     } else {

@@ -33,7 +33,7 @@ import com.karumi.rosie.sample.comics.domain.model.ComicSeries;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class ComicSeriesApiDataSource extends EmptyReadableDataSource<Integer, ComicSeries>
     implements ComicSeriesDataSource {
@@ -42,7 +42,8 @@ public class ComicSeriesApiDataSource extends EmptyReadableDataSource<Integer, C
   private final SeriesApiClient seriesApiClient;
   private final ComicSeriesToSeriesDtoMapper mapper = new ComicSeriesToSeriesDtoMapper();
 
-  @Inject public ComicSeriesApiDataSource(SeriesApiClient seriesApiClient) {
+  @Inject1
+  public ComicSeriesApiDataSource(SeriesApiClient seriesApiClient) {
     this.seriesApiClient = seriesApiClient;
   }
 

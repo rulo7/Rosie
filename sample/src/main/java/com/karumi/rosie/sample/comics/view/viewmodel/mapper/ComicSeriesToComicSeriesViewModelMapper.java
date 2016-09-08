@@ -21,11 +21,12 @@ import com.karumi.rosie.sample.comics.domain.model.ComicSeries;
 import com.karumi.rosie.sample.comics.view.viewmodel.ComicSeriesViewModel;
 import java.util.LinkedList;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class ComicSeriesToComicSeriesViewModelMapper {
 
-  @Inject public ComicSeriesToComicSeriesViewModelMapper() {
+  @Inject1
+  public ComicSeriesToComicSeriesViewModelMapper() {
   }
 
   public List<ComicSeriesViewModel> mapComicSeriesToComicSeriesViewModels(

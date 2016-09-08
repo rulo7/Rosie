@@ -28,7 +28,7 @@ import com.karumi.rosie.repository.datasource.paginated.PaginatedReadableDataSou
 import com.karumi.rosie.sample.characters.domain.model.Character;
 import com.karumi.rosie.sample.characters.repository.datasource.mapper.CharacterToCharacterDtoMapper;
 import java.util.Collection;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class CharactersApiDataSource extends EmptyReadableDataSource<String, Character>
     implements PaginatedReadableDataSource<String, Character> {
@@ -36,7 +36,8 @@ public class CharactersApiDataSource extends EmptyReadableDataSource<String, Cha
   private final CharacterApiClient characterApiClient;
   private final CharacterToCharacterDtoMapper mapper = new CharacterToCharacterDtoMapper();
 
-  @Inject public CharactersApiDataSource(CharacterApiClient characterApiClient) {
+  @Inject1
+  public CharactersApiDataSource(CharacterApiClient characterApiClient) {
     this.characterApiClient = characterApiClient;
   }
 

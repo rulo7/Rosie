@@ -21,7 +21,7 @@ import com.karumi.rosie.domain.usecase.callback.MainThreadCallbackScheduler;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class ErrorHandler {
 
@@ -29,7 +29,8 @@ public class ErrorHandler {
   private ErrorFactory errorFactory;
   private CallbackScheduler callbackScheduler;
 
-  @Inject public ErrorHandler() {
+  @Inject1
+  public ErrorHandler() {
     this(new ErrorFactory(), new MainThreadCallbackScheduler());
   }
 

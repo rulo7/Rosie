@@ -25,13 +25,13 @@ import com.karumi.rosie.sample.InjectedInstrumentationTest;
 import com.karumi.rosie.sample.R;
 import com.karumi.rosie.sample.characters.domain.model.Character;
 import com.karumi.rosie.sample.characters.repository.CharactersRepository;
-import dagger.Module;
-import dagger.Provides;
+import dagger.Module1;
+import dagger.Provides1;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.Inject1;
+import javax.inject.Singleton1;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -51,45 +51,43 @@ public class CharacterDetailsActivityTest extends InjectedInstrumentationTest {
 
   private static final int ANY_CHARACTER_ID = 1;
   private static final String ANY_EXCEPTION = "AnyException";
-  @Rule public IntentsTestRule<CharacterDetailsActivity> activityRule =
-      new IntentsTestRule<>(CharacterDetailsActivity.class, true, false);
+  @Rule
+  public IntentsTestRule<CharacterDetailsActivity> activityRule =
+          new IntentsTestRule<>(CharacterDetailsActivity.class, true, false);
 
-  @Inject CharactersRepository charactersRepository;
+  @Inject1
+  CharactersRepository charactersRepository;
 
-  @Test public void shouldShowCharacterDetailWhenCharacterIsLoaded() throws Exception {
+  @Test
+  public void shouldShowCharacterDetailWhenCharacterIsLoaded() throws Exception {
     Character character = givenAValidCharacter();
-
     startActivity();
-
     onView(withId(R.id.tv_character_name)).check(matches(withText(character.getName())));
     onView(withId(R.id.tv_description)).check(matches(withText(character.getDescription())));
   }
 
-  @Test public void shouldHideLoadingWhenCharacterIsLoaded() throws Exception {
+  @Test
+  public void shouldHideLoadingWhenCharacterIsLoaded() throws Exception {
     givenAValidCharacter();
-
     startActivity();
-
     onView((withId(R.id.loading))).check(matches(not(isDisplayed())));
   }
 
-  @Test public void shouldShowsErrorIfSomethingWrongHappend() throws Exception {
+  @Test
+  public void shouldShowsErrorIfSomethingWrongHappend() throws Exception {
     givenExceptionObtainingACharacter();
-
     startActivity();
-
     onView(allOf(withId(android.support.design.R.id.snackbar_text), withText("¯\\_(ツ)_/¯"))).check(
-        matches(isDisplayed()));
+            matches(isDisplayed()));
   }
 
-  @Test public void shouldShowsConnectionErrorIfHasConnectionTroubles() throws Exception {
+  @Test
+  public void shouldShowsConnectionErrorIfHasConnectionTroubles() throws Exception {
     givenConnectionExceptionObtainingACharacter();
-
     startActivity();
-
     onView(allOf(withId(android.support.design.R.id.snackbar_text),
-        withText("Connection troubles. Ask to Ironman!"))).check(
-        matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+            withText("Connection troubles. Ask to Ironman!"))).check(
+            matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
   }
 
   private Character givenAValidCharacter() throws Exception {
@@ -104,10 +102,11 @@ public class CharacterDetailsActivityTest extends InjectedInstrumentationTest {
 
   private void givenConnectionExceptionObtainingACharacter() throws Exception {
     when(charactersRepository.getByKey(anyString())).thenThrow(
-        new MarvelApiException(ANY_EXCEPTION, new UnknownHostException()));
+            new MarvelApiException(ANY_EXCEPTION, new UnknownHostException()));
   }
 
-  @NonNull private Character getCharacter(int id) {
+  @NonNull
+  private Character getCharacter(int id) {
     Character character = new Character();
     character.setKey("" + id);
     character.setName("SuperHero - " + id);
@@ -119,20 +118,23 @@ public class CharacterDetailsActivityTest extends InjectedInstrumentationTest {
   private CharacterDetailsActivity startActivity() {
     Intent intent = new Intent();
     intent.putExtra("CharacterDetailsActivity.CharacterKey", ANY_CHARACTER_ID);
-
     return activityRule.launchActivity(intent);
   }
 
-  @Override public List<Object> getTestModules() {
+  @Override
+  public List<Object> getTestModules() {
     return Arrays.asList((Object) new TestModule());
   }
 
-  @Module(overrides = true, library = true, complete = false,
-      injects = {
-          CharacterDetailsActivity.class, CharacterDetailsActivityTest.class
-      }) class TestModule {
+  @Module1(overrides = true, library = true, complete = false,
+          injects = {
+                  CharacterDetailsActivity.class, CharacterDetailsActivityTest.class
+          })
+  class TestModule {
 
-    @Provides @Singleton public CharactersRepository provideCharactersRepository() {
+    @Provides1
+    @Singleton1
+    public CharactersRepository provideCharactersRepository() {
       return mock(CharactersRepository.class);
     }
   }

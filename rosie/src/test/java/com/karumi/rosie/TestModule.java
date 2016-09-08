@@ -19,9 +19,9 @@ package com.karumi.rosie;
 import com.karumi.rosie.doubles.FakeActivity;
 import com.karumi.rosie.doubles.FakeActivityWithPresenter;
 import com.karumi.rosie.view.RosieFragmentTest;
-import dagger.Module;
+import dagger.Module1;
 
-@Module(
+@Module1(
     library = true,
     complete = false,
     injects = {

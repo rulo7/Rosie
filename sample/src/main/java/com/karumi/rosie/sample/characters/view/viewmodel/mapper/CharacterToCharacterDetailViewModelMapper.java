@@ -18,11 +18,12 @@ package com.karumi.rosie.sample.characters.view.viewmodel.mapper;
 
 import com.karumi.rosie.sample.characters.domain.model.Character;
 import com.karumi.rosie.sample.characters.view.viewmodel.CharacterDetailViewModel;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class CharacterToCharacterDetailViewModelMapper {
 
-  @Inject public CharacterToCharacterDetailViewModelMapper() {
+  @Inject1
+  public CharacterToCharacterDetailViewModelMapper() {
   }
 
   public CharacterDetailViewModel mapCharacterToCharacterDetailViewModel(Character character) {

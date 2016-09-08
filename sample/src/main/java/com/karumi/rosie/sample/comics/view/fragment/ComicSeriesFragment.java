@@ -23,10 +23,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
 import com.karumi.dividers.Direction;
 import com.karumi.dividers.DividerBuilder;
 import com.karumi.dividers.DividerItemDecoration;
@@ -47,14 +45,16 @@ import com.pedrogomez.renderers.RendererBuilder;
 import com.victor.loading.rotate.RotateLoading;
 import java.util.Collection;
 import java.util.List;
-import javax.inject.Inject;
+import javax.inject.Inject1;
 
 public class ComicSeriesFragment extends RosieFragment implements ComicsSeriesPresenter.View {
 
   @Bind(R.id.rv_comics) RecyclerView comicSeriesView;
   @Bind(R.id.loading) RotateLoading loadingView;
 
-  @Inject @Presenter ComicsSeriesPresenter presenter;
+  @Inject1
+  @Presenter
+  ComicsSeriesPresenter presenter;
 
   private RVRendererAdapter<ComicSeriesViewModel> comicSeriesAdapter;
   private ComicsSeriesAdapteeCollection comicsCollection;

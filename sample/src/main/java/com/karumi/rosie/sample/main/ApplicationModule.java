@@ -24,13 +24,13 @@ import com.karumi.rosie.sample.characters.domain.model.Character;
 import com.karumi.rosie.sample.comics.domain.model.ComicSeries;
 import com.karumi.rosie.sample.main.domain.usecase.GetMarvelSettings;
 import com.karumi.rosie.time.TimeProvider;
-import dagger.Module;
-import dagger.Provides;
-import javax.inject.Singleton;
+import dagger.Module1;
+import dagger.Provides1;
+import javax.inject.Singleton1;
 
 import static java.util.concurrent.TimeUnit.MINUTES;
 
-@Module(library = true,
+@Module1(library = true,
     complete = false,
     injects = {
         MainApplication.class
@@ -39,22 +39,27 @@ import static java.util.concurrent.TimeUnit.MINUTES;
   private static final long CHARACTERS_IN_MEMORY_CACHE_TTL = MINUTES.toMillis(5);
   private static final long COMICS_IN_MEMORY_CACHE_TTL = MINUTES.toMillis(5);
 
-  @Provides @Singleton
+  @Provides1
+  @Singleton1
   public PaginatedCacheDataSource<String, Character> provideCharactersPageInMemoryCache() {
     return new InMemoryPaginatedCacheDataSource<>(new TimeProvider(),
         CHARACTERS_IN_MEMORY_CACHE_TTL);
   }
 
-  @Provides @Singleton
+  @Provides1
+  @Singleton1
   public PaginatedCacheDataSource<Integer, ComicSeries> provideComicsPageInMemoryCache() {
     return new InMemoryPaginatedCacheDataSource<>(new TimeProvider(), COMICS_IN_MEMORY_CACHE_TTL);
   }
 
-  @Provides public ErrorHandler providesErrorHandler(MarvelErrorFactory errorFactory) {
+  @Provides1
+  public ErrorHandler providesErrorHandler(MarvelErrorFactory errorFactory) {
     return new ErrorHandler(errorFactory);
   }
 
-  @Provides @Singleton public GetMarvelSettings provideGetMarvelSettings() {
+  @Provides1
+  @Singleton1
+  public GetMarvelSettings provideGetMarvelSettings() {
     return new GetMarvelSettings();
   }
 
