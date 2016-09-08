@@ -78,17 +78,15 @@ ext {
     // Maven metadata
     publishedGroupId = 'com.racobos'
     libraryName = 'rosie_compatible_dagger_2'
+    libraryVersion = versionLibName;
+    libraryDescription = 'Rosie is a Framework created by Karumi organization and It is dependency of dagger1. \n' +
+            'If you want to use dagger 2 into your project and use Rosie, you have a problem. But this, is the solution, with this version, dagger 1 and dagger 2 can live together and you can to use Rosie in your project with dagger 2.'
     // Save yourself a head ache, and set this equal to the name of the Android Studio library
     // module. The artifact name needs to match the name of the library.
     artifact = 'rosie_compatible_dagger_2'
-
-    libraryDescription =
-            'Just a simple activity that show all the images and videos in a gallery and allows to select one and retrieve it'
-    libraryVersion = versionLibName
-
     developerId = 'rulo7'
-    developerName = 'Raúl Cobos Hernando'
-    developerEmail = 'raulcobosh@gmail.com'
+    developerName = 'Raúl Cobos'
+    developerEmail = 'rulo2305@gmail.com'
 }
 
 bintray {
@@ -102,7 +100,7 @@ bintray {
         publish = true
         version {
             name = versionLibName
-            desc = '\t\n' + 'Rosie is a Framework created by Karumi organization and It is dependency of dagger1. \n' +
+            desc = 'Rosie is a Framework created by Karumi organization and It is dependency of dagger1. \n' +
                     'If you want to use dagger 2 into your project and use Rosie, you have a problem. But this, is the solution, with this version, dagger 1 and dagger 2 can live together and you can to use Rosie in your project with dagger 2.'
             vcsUrl = 'https://github.com/rulo7/Rosie'
         }
@@ -123,5 +121,4 @@ allprojects {
 
 bintrayUpload.mustRunAfter install
 task remoteUpload(dependsOn: ['install', 'bintrayUpload'])
-
 //----
