@@ -81,12 +81,13 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.karumi:dividers:1.0.3'
-    compile 'com.victor:lib:1.0.1' // https://github.com/yankai-victor/Loading
+    compile 'com.victor:lib:1.0.1'
+    // https://github.com/yankai-victor/Loading
     compile 'com.karumi:marvelapiclient:0.0.4'
     compile 'com.github.pedrovgs:renderers:3.0.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     //provided 'com.squareup.dagger:dagger-compiler:1.2.2'
-    //provided project(path: ':one-dagger-compiler', transitive: false)
+    provided project(path: ':one-dagger-compiler', transitive: false, configuration: 'shadow')
     compile project(':rosie')
 
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
